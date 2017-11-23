@@ -17,7 +17,7 @@ out/
 target/
 gen-external-apklibs/
 build/
-gradle/
+#gradle/
 generated/
 generated_tests/
 
