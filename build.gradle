@@ -1,0 +1,96 @@
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.boxfuse.client:flyway-release:4.2.0"
+    }
+}
+
+
+apply plugin: "org.flywaydb.flyway"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    providedCompile("javax.servlet:javax.servlet-api:3.1.0")
+    compile 'javax.servlet:jstl:1.2'
+
+
+    //Spring
+    compile 'org.springframework:spring-context:4.0.3.RELEASE'
+    compile 'org.springframework:spring-core:4.0.3.RELEASE'
+    compile 'org.springframework:spring-beans:4.0.3.RELEASE'
+    compile 'org.springframework:spring-aop:4.0.3.RELEASE'
+    compile 'org.springframework:spring-expression:4.0.3.RELEASE'
+
+    compile 'org.springframework:spring-jdbc:4.0.3.RELEASE'
+    compile 'org.springframework.data:spring-data-jpa:1.3.0.RELEASE'
+
+    compile 'org.springframework:spring-orm:4.0.3.RELEASE'
+    compile 'org.springframework:spring-tx:4.0.3.RELEASE'
+
+    compile 'org.springframework:spring-webmvc:4.0.3.RELEASE'
+    compile 'org.springframework:spring-web:4.0.3.RELEASE'
+
+    //Jackson
+    compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
+
+    // H2 InMemory DB
+    compile 'com.h2database:h2:1.4.187'
+
+    //Security
+    compile 'org.springframework.security:spring-security-core:4.2.3.RELEASE'
+    compile 'org.springframework.security:spring-security-web:4.2.3.RELEASE'
+    compile 'org.springframework.security:spring-security-config:4.2.3.RELEASE'
+
+
+    // Hibernate
+    compile 'org.hibernate:hibernate-core:4.2.10.Final'
+    compile 'org.hibernate:hibernate-entitymanager:4.2.10.Final'
+    compile 'org.hibernate:hibernate-validator:4.2.0.Final'
+    compile 'org.hibernate.common:hibernate-commons-annotations:4.0.2.Final'
+
+
+    //AWS
+    compile 'com.amazonaws:aws-java-sdk:1.9.30'
+
+    compile 'mysql:mysql-connector-java:5.1.13'
+
+}
+
+flyway {
+    url = 'jdbc:mysql://localhost:3306/facedating'
+    user = 'root'
+    password = ''
+}
+
+
+//war {
+//    webInf { from 'src/main/webapp/WEB-INF'} // adds a file-set to the WEB-INF dir.
+//    classpath fileTree('src/main/webapp/WEB-INF/lib') // adds a file-set to the WEB-INF/lib dir.
+//    webXml = file('src/main/webapp/WEB-INF/web.xml') // copies a file to WEB-INF/web.xml
+//    from('src/main/webapp') { include ('bootstrap/css/*.css', 'bootstrap/js/*.js', 'bootstrap/img/*.*')  }
+//}
+//
+//task deploy (dependsOn: war){
+//    copy {
+//        from "build/libs"
+//        into "D:/Apache Software Foundation/Tomcat 8.0/webapps"
+//        include "*.war"
+//    }
