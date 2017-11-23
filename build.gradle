@@ -80,6 +80,10 @@ flyway {
     password = ''
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.5'
+}
+
 
 //war {
 //    webInf { from 'src/main/webapp/WEB-INF'} // adds a file-set to the WEB-INF dir.
