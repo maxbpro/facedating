@@ -9,174 +9,249 @@
 <html>
 
 
-<jsp:include page="../templates/header.jsp"/>
-<jsp:include page="../fragments/header.jsp"/>
+<head>
+    <jsp:include page="../templates/header.jsp"/>
+    <jsp:include page="../fragments/header.jsp"/>
+
+    <spring:url value="/resources/css/custom/profile.css" var="profile"/>
+    <link href="${profile}" rel="stylesheet" />
+
+</head>
+
 
 <body>
 
-
 <div class="container">
 
-    <c:if test="${not empty msg}">
-        <div class="alert alert-${css} alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
-            <strong>${msg}</strong>
-        </div>
-    </c:if>
 
-    <h1>Profile</h1>
+    <spring:url value="/user/updatePhoto" var="photoUpdateUrl" />
+    <spring:url value="/user/update" var="userUpdateUrl" />
 
-    <!-- Avatar -->
+    <h1 class="page-header">My Profile</h1>
+    <div class="row">
 
-    <img alt="Avatar" class="img-responsive img-thumbnail" src="${user.photoUrl}" width="400" height="400">
+        <!-- left column -->
+        <div class="col-md-4 col-sm-6 ">
 
-    <spring:url value="/user/${user.id}/updatePhoto" var="photoUpdateUrl" />
+            <div class="text-center">
 
+                <img src="${userPhotoUrl}" id="img" class="avatar img-circle img-thumbnail" alt="avatar">
 
-    <form:form method="post" action="${photoUpdateUrl}" enctype="multipart/form-data">
-
-        <div class="form-group">
-            <input type="file" name="inputFile" id="inputFile"/>
-            <button type="submit" class="btn-sm btn-primary">Update avatar</button>
-        </div>
-
-    </form:form>
-
-
-
-    <!-- Fields -->
-
-    <spring:url value="/user/${user.id}/update" var="actionUrl" />
-
-    <form:form class="form-horizontal" method="post" modelAttribute="user" action="${actionUrl}">
-
-        <spring:bind path="id">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">User Id</label>
-                <div class="col-sm-10">
-                    <form:input path="id" type="text" readonly="true" class="form-control" id="id"  />
-                </div>
             </div>
-        </spring:bind>
 
-        <spring:bind path="username">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Username</label>
-                <div class="col-sm-10">
-                    <form:input path="username" readonly="true" type="text" class="form-control" id="username" />
-                </div>
-            </div>
-        </spring:bind>
+            <form class="form-horizontal"  method="post" action="${photoUpdateUrl}"
+                       enctype="multipart/form-data">
 
-        <spring:bind path="email">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-10">
-                    <form:input path="email" type="email" class="form-control"
-                                id="email" placeholder="Email" />
-                    <form:errors path="email" class="control-label" />
-                </div>
-            </div>
-        </spring:bind>
-
-        <spring:bind path="firstName">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">First Name</label>
-                <div class="col-sm-10">
-                    <form:input path="firstName" type="text" class="form-control"
-                                id="firstName" placeholder="First name" />
-                    <form:errors path="firstName" class="control-label" />
-                </div>
-            </div>
-        </spring:bind>
-
-        <spring:bind path="lastName">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Last Name</label>
-                <div class="col-sm-10">
-                    <form:input path="lastName" type="text" class="form-control"
-                                id="lastName" placeholder="Last name" />
-                    <form:errors path="lastName" class="control-label" />
-                </div>
-            </div>
-        </spring:bind>
-
-
-        <spring:bind path="birthdate">
-
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Date</label>
-                <div class="col-sm-10">
-                    <form:input class="form-control" path="birthdate" name="birthdate" placeholder="DD/MM/YYY"/>
-                    <form:errors path="birthdate" class="control-label" />
+                <div class="text-center">
+                    <h6>Add a new photo into Gallery...</h6>
+                    <input  type="file" name="inputFile" id="inputFile" class="text-center center-block well well-sm"/>
+                    <button type="submit" class="btn btn-success">Update avatar</button>
                 </div>
 
-            </div>
+            </form>
 
-        </spring:bind>
-
-        <spring:bind path="gender">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Gender</label>
-                <div class="col-sm-10">
-
-                    <form:select cssClass="form-control" path="gender"  name="gender" items="${genderEnum}"/>
-                    <form:errors path="gender" class="control-label" />
-                </div>
-            </div>
-        </spring:bind>
-
-        <spring:bind path="countryId">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <label class="col-sm-2 control-label">Country</label>
-                <div class="col-sm-10">
-                    <form:select cssClass="form-control" path="countryId"  name="countryId" items="${countries}"/>
-                    <form:errors path="countryId" class="control-label" />
-                </div>
-            </div>
-        </spring:bind>
-
-
-        <spring:bind path="regionId">
-            <div class="form-group ${status.error ? 'has-error' : ''}" id="regionBlock">
-                <label class="col-sm-2 control-label">Region</label>
-                <div class="col-sm-10">
-                    <form:select cssClass="form-control" path="regionId"  name="regionId" />
-                    <form:errors path="regionId" class="control-label" />
-                </div>
-            </div>
-        </spring:bind>
-
-        <spring:bind path="cityId">
-            <div class="form-group ${status.error ? 'has-error' : ''}" id="cityBlock">
-                <label class="col-sm-2 control-label">City</label>
-                <div class="col-sm-10">
-                    <form:select cssClass="form-control" path="cityId"  name="cityId" />
-                    <form:errors path="cityId" class="control-label" />
-                </div>
-            </div>
-        </spring:bind>
-
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn-lg btn-primary pull-right">Update</button>
-            </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn-lg btn-primary pull-right">Change password</button>
-            </div>
+        <!-- right column -->
+        <div class="col-md-8 col-sm-6  personal-info">
+
+
+            <form:form class="form-horizontal" role="form" method="post" modelAttribute="userForm" action="${userUpdateUrl}">
+
+                <c:if test="${msg ne null}">
+                      
+                    <div class="alert alert-info alert-dismissable">
+                        <a class="panel-close close" data-dismiss="alert">×</a>
+                        <i class="fa fa-coffee"></i>
+                            ${msg}
+                    </div>
+
+                </c:if>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label required-field">First name:</label>
+                    <div class="col-lg-8">
+                        <form:input path="firstName" class="form-control" id="firstName" placeholder="First Name"  type="text"/>
+                        <form:errors path="firstName" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label required-field">Last name:</label>
+                    <div class="col-lg-8">
+                        <form:input path="lastName" class="form-control" id="lastName" placeholder="Last Name"  type="text"/>
+                        <form:errors path="lastName" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label required-field">Email:</label>
+                    <div class="col-lg-8">
+                        <form:input readonly="true" path="email" class="form-control" type="text" id="email" placeholder="Email"/>
+                        <form:errors path="email" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label required-field ">Username:</label>
+                    <div class="col-md-8">
+                        <form:input readonly="true" path="username" class="form-control" type="text" id="username" placeholder="username"/>
+                        <form:errors path="username" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label required-field">Birthdate:</label>
+                    <div class="col-md-8">
+                        <form:input class="form-control" path="birthdate" name="birthdate" placeholder="DD/MM/YYY"/>
+                        <form:errors path="birthdate" class="control-label" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Phone number:</label>
+                    <div class="col-md-8">
+                        <form:input path="phoneNumber" class="form-control" type="text" id="phoneNumber" placeholder="phone number"/>
+                        <form:errors path="phoneNumber" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Gender:</label>
+                    <div class="col-md-8">
+                        <form:select cssClass="form-control" path="gender"  name="gender" items="${genderEnum}"/>
+                        <form:errors path="gender" class="control-label" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Country:</label>
+                    <div class="col-md-8">
+                        <form:select cssClass="form-control" path="countryId"  name="countryId">
+                            <%--<form:option value="${countryId}">${countryTitle}</form:option>--%>
+                            <form:option value="0">---select---</form:option>
+                            <form:options items="${countries}" />
+                        </form:select>
+
+                        <form:errors path="countryId" class="control-label" />
+                    </div>
+                </div>
+
+                <c:choose>
+                    <c:when test="${hasRegion}">
+
+                        <div class="form-group" id="regionBlock">
+                            <label class="col-md-3 control-label">Region:</label>
+                            <div class="col-md-8">
+
+                                <form:select cssClass="form-control" path="regionId"  name="regionId">
+                                    <form:option value="0">---select---</form:option>
+                                    <form:options items="${regions}" />
+                                </form:select>
+
+                                <form:errors path="regionId" class="control-label" />
+                            </div>
+                        </div>
+
+                    </c:when>
+                    <c:otherwise>
+
+                        <div class="initiallyHidden form-group" id="regionBlock">
+                            <label class="col-md-3 control-label">Region:</label>
+                            <div class="col-md-8">
+                                <form:select cssClass="form-control" path="regionId"  name="regionId"/>
+                                <form:errors path="regionId" class="control-label" />
+                            </div>
+                        </div>
+
+                    </c:otherwise>
+                </c:choose>
+
+                <c:choose>
+                    <c:when test="${hasCity}">
+
+                        <div class="form-group" id="cityBlock">
+                            <label class="col-md-3 control-label">City:</label>
+                            <div class="col-md-8">
+
+                                <form:select cssClass="form-control" path="cityId"  name="cityId">
+                                    <form:option value="0">---select---</form:option>
+                                    <form:options items="${cities}" />
+                                </form:select>
+
+                                <form:errors path="cityId" class="control-label" />
+                            </div>
+                        </div>
+
+                    </c:when>
+                    <c:otherwise>
+
+                        <div class="initiallyHidden form-group" id="cityBlock">
+                            <label class="col-md-3 control-label">City:</label>
+                            <div class="col-md-8">
+
+                                <form:select cssClass="form-control" path="cityId"  name="cityId">
+                                    <form:option value="0">---select---</form:option>
+
+                                </form:select>
+
+                                <form:errors path="cityId" class="control-label" />
+                            </div>
+                        </div>
+
+                    </c:otherwise>
+                </c:choose>
+
+
+
+
+
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Profession:</label>
+                    <div class="col-md-8">
+                        <form:input path="profession" class="form-control" type="text" id="profession" placeholder="Profession"/>
+                        <form:errors path="profession" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Job:</label>
+                    <div class="col-md-8">
+                        <form:input path="job" class="form-control" type="text" id="job" placeholder="Job"/>
+                        <form:errors path="job" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label required-field ">About me:</label>
+                    <div class="col-md-8">
+                        <form:textarea path="about" class="form-control" type="text" id="about" placeholder="About me"/>
+                        <form:errors path="about" />
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+                </div>
+
+
+
+            </form:form>
+
         </div>
 
-    </form:form>
 
+    </div>
 </div>
-
 
 
 
@@ -188,8 +263,8 @@
 <spring:url value="/resources/js/bootstrap-datepicker.js" var="datepicker"/>
 <script type="text/javascript" src="${datepicker}"></script>
 
-<spring:url value="/resources/js/profile.js" var="profile"/>
-<script type="text/javascript" src="${profile}"></script>
+<spring:url value="/resources/js/user.js" var="user"/>
+<script type="text/javascript" src="${user}"></script>
 
 
 </body>

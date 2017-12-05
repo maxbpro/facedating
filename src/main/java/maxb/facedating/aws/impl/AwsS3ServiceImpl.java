@@ -3,6 +3,8 @@ package maxb.facedating.aws.impl;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -27,8 +29,8 @@ public class AwsS3ServiceImpl implements AwsS3Service {
     @Autowired
     private AmazonS3 s3client;
 
-    @Value("${aws_namecard_bucket}")
-    private String bucketName;
+    //@Value("${aws_namecard_bucket}")
+    private String bucketName = "maxb.faces";
 
     @Override
     public String s3Upload(String keyName, String uploadPath) {
@@ -54,7 +56,7 @@ public class AwsS3ServiceImpl implements AwsS3Service {
             TransferManager transferManager = new TransferManager(s3client);
             // Otherwise: (Service: Amazon S3; Status Code: 301; Error Code:
             // PermanentRedirect)
-            // s3client.setRegion(Region.getRegion(Regions.EU_WEST_1));
+             //s3client.setRegion(Region.getRegion(Regions.));
             ObjectMetadata objectMetadata = new ObjectMetadata();
             //objectMetadata.setContentType("image/png");
             objectMetadata.setContentDisposition("attachment; filename=" + file.getOriginalFilename());

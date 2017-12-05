@@ -6,8 +6,10 @@
 <!DOCTYPE html>
 <html>
 
-<jsp:include page="../templates/header.jsp"/>
-<jsp:include page="../fragments/header.jsp"/>
+<head>
+    <jsp:include page="../templates/header.jsp"/>
+    <jsp:include page="../fragments/header.jsp"/>
+</head>
 
 <body>
 

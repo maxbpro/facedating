@@ -39,6 +39,12 @@ public class RestCountriesServiceImpl implements RestCountriesService {
     @Value("${vk.getRegions}")
     private String urlRegions;
 
+    @Value("${vk.getCity}")
+    private String urlCity;
+
+    @Value("${vk.getCountry}")
+    private String urlCountry;
+
 
     @Override
     public List<Country> getCountries() {
@@ -102,6 +108,43 @@ public class RestCountriesServiceImpl implements RestCountriesService {
         CitiesResponse citiesResponse = response.getBody().getResponse();
 
         return new ArrayList<>(Arrays.asList(citiesResponse.getCities()));
+    }
+
+
+    @Override
+    public City getCityById(long city_id) {
+
+        MultiValueMap<String, String> map= getMultiValueMap();
+        map.add("city_ids", String.valueOf(city_id));
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, getHeaders());
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<VkResponse<City[]>> response = restTemplate.exchange(endpoint + urlCity, HttpMethod.POST,
+                request, new ParameterizedTypeReference<VkResponse<City[]>>() {});
+
+        City city = response.getBody().getResponse()[0];
+
+        return city;
+    }
+
+    @Override
+    public Country getCountryById(long country_id) {
+
+        MultiValueMap<String, String> map= getMultiValueMap();
+        map.add("country_ids", String.valueOf(country_id));
+
+        HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, getHeaders());
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<VkResponse<Country[]>> response = restTemplate.exchange(endpoint + urlCountry, HttpMethod.POST,
+                request, new ParameterizedTypeReference<VkResponse<Country[]>>() {});
+
+        Country country  = response.getBody().getResponse()[0];
+
+        return country;
     }
 
     private HttpHeaders getHeaders(){

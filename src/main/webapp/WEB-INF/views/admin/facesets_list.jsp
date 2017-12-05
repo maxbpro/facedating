@@ -6,8 +6,10 @@
 <!DOCTYPE html>
 <html>
 
-<jsp:include page="../templates/header.jsp"/>
-<jsp:include page="../fragments/header.jsp"/>
+<head>
+    <jsp:include page="../templates/header.jsp"/>
+    <jsp:include page="../fragments/header.jsp"/>
+</head>
 
 <body>
 
@@ -15,48 +17,64 @@
     <div class="container">
 
 
-        <c:if test="${not empty msg}">
-            <div class="alert alert-${css} alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert"
-                        aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <strong>${msg}</strong>
-            </div>
-        </c:if>
+        <div class="col-md-3">
 
-        <h1>All Facesets</h1>
+            <jsp:include page="../admin/fragments/menu.jsp"/>
 
+        </div>
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>#FacesetToken</th>
-                <th>Display Name</th>
-                <th>Action</th>
-            </tr>
-            </thead>
+        <div class="col-md-9">
 
-            <c:forEach var="item" items="${facesets}">
+            <c:if test="${not empty msg}">
+                <div class="alert alert-${css} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <strong>${msg}</strong>
+                </div>
+            </c:if>
+
+            <h1>All Facesets</h1>
+
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Library</a></li>
+                <li class="active">Data</li>
+            </ol>
+
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <td>${item.facesetToken}</td>
-                    <td>${item.displayName}</td>
-
-                    <td>
-                        <spring:url value="/admin/faceset/${item.facesetToken}" var="facesetUrl" />
-                        <spring:url value="/admin/faceset/${item.facesetToken}/delete" var="deleteUrl" />
-                        <spring:url value="/admin/faceset/${item.facesetToken}/update" var="updateUrl" />
-
-                        <button class="btn btn-info"
-                                onclick="location.href='${facesetUrl}'">View</button>
-                        <button class="btn btn-primary"
-                                onclick="location.href='${updateUrl}'">Update</button>
-                        <button class="btn btn-danger"
-                                onclick="this.disabled=true;location.href='${deleteUrl}'">Delete</button>
-                    </td>
+                    <th>#FacesetToken</th>
+                    <th>Display Name</th>
+                    <th>Action</th>
                 </tr>
-            </c:forEach>
-        </table>
+                </thead>
+
+                <c:forEach var="item" items="${facesets}">
+                    <tr>
+                        <td>${item.facesetToken}</td>
+                        <td>${item.displayName}</td>
+
+                        <td>
+                            <spring:url value="/admin/faceset/${item.facesetToken}" var="facesetUrl" />
+                            <spring:url value="/admin/faceset/${item.facesetToken}/delete" var="deleteUrl" />
+                            <spring:url value="/admin/faceset/${item.facesetToken}/update" var="updateUrl" />
+
+                            <button class="btn btn-info"
+                                    onclick="location.href='${facesetUrl}'">View</button>
+                            <button class="btn btn-primary"
+                                    onclick="location.href='${updateUrl}'">Update</button>
+                            <button class="btn btn-danger"
+                                    onclick="this.disabled=true;location.href='${deleteUrl}'">Delete</button>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+
+        </div>
+
 
     </div>
 

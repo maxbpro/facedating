@@ -68,9 +68,13 @@ dependencies {
 
 
     //AWS
-    compile 'com.amazonaws:aws-java-sdk:1.9.30'
+    compile 'com.amazonaws:aws-java-sdk:1.11.236'
 
     compile 'mysql:mysql-connector-java:5.1.13'
+
+    //modelmapper
+    compile 'org.modelmapper:modelmapper:1.1.1'
+
 
 }
 

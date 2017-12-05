@@ -50,9 +50,6 @@ public class HelloWorldController {
         model.addAttribute("currentIndex", current);
 
 
-        //facePlusService.addFaceIntoFaceset("c7dc746886a56f613e346e273b0a6eec", "60d8606f8cb261dc33ba27d4e0e4434e");
-        //facePlusService.detect("https://s3-ap-southeast-1.amazonaws.com/maxb.faces/maxb2009_1");
-
         return "welcome";
     }
 

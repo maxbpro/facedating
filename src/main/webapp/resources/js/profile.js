@@ -1,82 +1,73 @@
 
-
-
 $(document).ready(function(){
-    var date_input=$('input[name="birthdate"]'); //our date input has the name "date"
-    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-    var options={
-        format: 'dd/mm/yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-    };
-    date_input.datepicker(options);
-
-    $("#countryId").on("change", function (event) {
-
-        var countryId = $("#countryId").val();
-
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/user/regions?countryId=" + countryId,
-            cache: true,
-            success: function (data) {
-
-                $("#regionBlock").fadeIn();
-
-                $('#regionId').empty()
-
-                $.each(data, function(key, item) {
-                    $('#regionId')
-                        .append($("<option></option>")
-                            .attr("value",item.id)
-                            .text(item.title));
-                });
 
 
+    $('#btnLike').click(function(e){
+        e.preventDefault();
 
-            },
-            error: function (e) {
-                alert("Error Loading cities");
-            }
+        var isLiked = $('#btnLike').attr('liked');
+        console.log(isLiked);
 
-        });
+        if(isLiked == true){
+            var likedId = $('#btnLike').attr('likedId');
+            deleteLike(likedId);
+        }else{
+            var userId = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+            addLike(userId);
+        }
 
     });
 
-    $("#regionId").on("change", function (event) {
-
-        var countryId = $("#countryId").val();
-        var regionId = $("#regionId").val();
-
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/user/cities?countryId=" + countryId + "&regionId=" + regionId,
-            cache: true,
-            success: function (data) {
-
-                $("#cityBlock").fadeIn();
-
-                $('#cityId').empty()
-
-                $.each(data, function(key, item) {
-                    $('#cityId')
-                        .append($("<option></option>")
-                            .attr("value",item.id)
-                            .text(item.title));
-                });
-
-
-
-            },
-            error: function (e) {
-                alert("Error Loading cities");
-            }
-
-        });
-
-    });
-
-    //$("#regionBlock").hide();
-    //$("#cityBlock").hide();
 })
+
+function updateLikedStatus() {
+
+    var isLiked = $('#btnLike').attr('liked');
+
+    if(isLiked == true){
+        $('#btnLike').removeClass();
+        $('#btnLike').addClass("btn btn-danger btn-sm");
+    }else{
+        $('#btnLike').removeClass();
+        $('#btnLike').addClass("btn btn-success btn-sm");
+    }
+}
+
+function addLike(otherUserId) {
+
+    $.ajax({
+        type: "POST",
+        url: "/rest/likes/",
+        data: {
+            "otherUserId": otherUserId
+        },
+        success: function (data) {
+
+            $('#btnLike').attr('liked', true);
+            $('#btnLike').attr('likedId', data.id);
+            updateLikedStatus();
+        },
+        error: function (e) {
+            $('#btnLike').attr('liked', false);
+            updateLikedStatus();
+        }
+
+    });
+}
+
+function deleteLike(likeId){
+
+    $.ajax({
+        type: "DELETE",
+        url: "/rest/likes/" + likeId,
+        success: function (data) {
+            $('#btnLike').attr('liked', false);
+            updateLikedStatus();
+        },
+        error: function (e) {
+            $('#btnLike').attr('liked', true);
+            updateLikedStatus();
+        }
+
+    });
+}

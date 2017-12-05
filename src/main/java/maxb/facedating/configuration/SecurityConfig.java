@@ -61,19 +61,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')");
         http.authorizeRequests().antMatchers("/user/list").access("hasRole('ROLE_ADMIN')");
 
-        http.authorizeRequests().and().formLogin()
-                .loginProcessingUrl("/j_spring_security_check")
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/home", true)
-                .and().logout().logoutUrl("/j_spring_security_logout").logoutSuccessUrl("/login")
-                //Persistent token approach
-                .and().rememberMe()
-                .tokenRepository(persistentTokenRepository())
-                .tokenValiditySeconds(60 * 60)
-                .and().exceptionHandling().accessDeniedPage("/accessDenied");
+        http.authorizeRequests()
+                .and()
+                .formLogin()
+                    .loginProcessingUrl("/login")
+                    .loginPage("/login")
+                    .failureUrl("/login?error=true")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/home", true)
+                .and()
+                .logout()
+                    .logoutUrl("/j_spring_security_logout")
+                    .logoutSuccessUrl("/login")
+                //.and().logout().logoutSuccessUrl("/login")
+
+                .and()
+                .rememberMe()
+                    .tokenRepository(persistentTokenRepository())
+                    .tokenValiditySeconds(60 * 60)
+                .and()
+                .exceptionHandling()
+                    .accessDeniedPage("/accessDenied");
 
     }
 

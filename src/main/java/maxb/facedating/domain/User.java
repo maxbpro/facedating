@@ -60,6 +60,19 @@ public class User {
     @Column(name = "CITY_ID")
     private Long cityId;
 
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
+
+    @Column(name = "ABOUT")
+    private String about;
+
+    @Column(name = "PROFESSION")
+    private String profession;
+
+    @Column(name = "JOB")
+    private String job;
+
+
     @Transient
     private String confirmPassword;
 
@@ -229,5 +242,37 @@ public class User {
 
     public void setFacesetToken(String facesetToken) {
         this.facesetToken = facesetToken;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 }

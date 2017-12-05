@@ -2,26 +2,29 @@ package maxb.facedating.configuration;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
-import org.hibernate.SessionFactory;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.hibernate.ejb.HibernatePersistence;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.springframework.data.authentication.UserCredentials;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
@@ -34,6 +37,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -41,7 +45,7 @@ import java.util.Properties;
  */
 
 @Configuration
-@PropertySource(value = {"classpath:dbConfig.properties", "classpath:amazon.properties",
+@PropertySource(value = {"classpath:dbConfig.properties",
         "classpath:faceplus.properties", "classpath:vk.properties" })
 @EnableWebMvc
 @EnableJpaRepositories("maxb.facedating.dao")
@@ -60,11 +64,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Value("${hibernate.generateStatistics}")
     private String generateStatistics;
 
-    @Value("${aws_access_key_id}")
-    private String awsId;
-
-    @Value("${aws_secret_access_key}")
-    private String awsKey;
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
@@ -102,27 +101,27 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
 
-//    @Bean(name = "dataSource")
-//    public DataSource dataSource(){
-//        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-//        builder.setName("H2-Test-DB");
-//        EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2)
-//                .addScript("classpath:dbscript/my-schema.sql")
-//                .addScript("classpath:dbscript/my-test-data.sql")
-//                .build();
-//
-//        return db;
-//    }
+    @Bean(name = "dataSource")
+    public DataSource dataSource(){
+        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+        builder.setName("H2-Test-DB");
+        EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2)
+                .addScript("classpath:dbscript/my-schema.sql")
+                .addScript("classpath:dbscript/my-test-data.sql")
+                .build();
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource datasource = new DriverManagerDataSource();
-        datasource.setDriverClassName("com.mysql.jdbc.Driver");
-        datasource.setUrl("jdbc:mysql://localhost:3306/facedating");
-        datasource.setUsername("root");
-        datasource.setPassword("");
-        return datasource;
+        return db;
     }
+
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource datasource = new DriverManagerDataSource();
+//        datasource.setDriverClassName("com.mysql.jdbc.Driver");
+//        datasource.setUrl("jdbc:mysql://localhost:3306/facedating");
+//        datasource.setUsername("root");
+//        datasource.setPassword("");
+//        return datasource;
+//    }
 
 
 
@@ -146,6 +145,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
 
+
+
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource rb = new ResourceBundleMessageSource();
@@ -159,13 +160,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return new StandardServletMultipartResolver();
     }
 
-    @Bean
-    public AWSCredentials credential() {
-        return new BasicAWSCredentials(awsId, awsKey);
-    }
+
 
     @Bean
     public AmazonS3 s3client() {
-        return new AmazonS3Client(credential());
+        AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+                .withCredentials(new DefaultAWSCredentialsProviderChain())
+                .withRegion(Regions.AP_SOUTHEAST_1)
+                .build();
+        return s3Client;
+    }
+
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }

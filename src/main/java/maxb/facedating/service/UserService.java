@@ -21,6 +21,8 @@ public interface UserService {
 
     User findByUserId(Long id);
 
+    User findByFacesetTokenAndFaceToken(String facesetToken, String faceToken);
+
     List<User> listUsers();
 
     Page<User> getUser(Integer pageNumber);

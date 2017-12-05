@@ -58,6 +58,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByFacesetTokenAndFaceToken(String facesetToken, String faceToken) {
+        return userRepository.findByFacesetTokenAndFaceToken(facesetToken, faceToken);
+    }
+
+    @Override
     public List<User> listUsers() {
         return userRepository.findAll();
     }

@@ -16,4 +16,8 @@ public interface RestCountriesService {
     List<Region> getRegions(long country_id, String substring);
 
     List<City> getCities(long country_id, long region_id, String substring);
+
+    City getCityById(long city_id);
+
+    Country getCountryById(long country_id);
 }
