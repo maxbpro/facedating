@@ -26,7 +26,7 @@
         <div class="navbar-header">
 
             <a class="navbar-brand" href="${pageContext.request.contextPath}/home">
-                <img alt="Brand" src="/resources/images/logo.jpg" width="50" height="30">
+                <img alt="Brand" src="${pageContext.servletContext.contextPath}/resources/images/logo.jpg" width="50" height="30">
             </a>
 
 
