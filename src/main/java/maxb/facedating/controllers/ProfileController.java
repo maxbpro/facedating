@@ -10,6 +10,8 @@ import maxb.facedating.service.LikeInfoService;
 import maxb.facedating.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,9 +21,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.Date;
 
 
 /**
@@ -51,6 +55,8 @@ public class ProfileController {
             UserDetails userDetails = (UserDetails) auth.getPrincipal();
             User user = userService.findByUsername(userDetails.getUsername());
             User otherUser = userService.findByUserId(userId);
+
+            modelAndView.addObject("senderId", otherUser.getId());
 
             LikeInfo likeInfo = likeInfoService.findByUserIdAndOtherUserId(user.getId(), otherUser.getId());
 
@@ -86,5 +92,44 @@ public class ProfileController {
 
 
         return modelAndView;
+    }
+
+    @RequestMapping(value = "/removeLike/{otherUserId}", method = RequestMethod.GET)
+    public String deleteLike(@PathVariable Long otherUserId) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            User user = userService.findByUsername(userDetails.getUsername());
+
+            LikeInfo likeInfo = likeInfoService.findByUserIdAndOtherUserId(user.getId(), otherUserId);
+
+            if(likeInfo != null){
+                likeInfoService.delete(likeInfo);
+            }
+        }
+
+        return "redirect:/profile/" + otherUserId;
+    }
+
+    @RequestMapping(value = "/addLike/{otherUserId}", method = RequestMethod.GET)
+    public String addLike(@PathVariable Long otherUserId) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+
+            UserDetails userDetails = (UserDetails) auth.getPrincipal();
+            User user = userService.findByUsername(userDetails.getUsername());
+
+            LikeInfo likeInfo = new LikeInfo();
+            likeInfo.setCreatedAt(new Date());
+            likeInfo.setUserId(user.getId());
+            likeInfo.setOtherUserId(otherUserId);
+
+            likeInfoService.save(likeInfo);
+        }
+
+        return "redirect:/profile/" + otherUserId;
     }
 }

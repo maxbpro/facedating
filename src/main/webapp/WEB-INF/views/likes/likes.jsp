@@ -14,141 +14,171 @@
     <jsp:include page="../fragments/header.jsp"/>
 </head>
 
-<body>
+<body style="background-color: #2f3239">
 
+<!-- This section is for Splash Screen -->
+<div class="ole">
+    <section id="jSplash">
+        <div id="circle"></div>
+    </section>
+</div>
+<!-- End of Splash Screen -->
 
 <div class="container">
 
     <div class="container bg" id="sceneView">
 
-        <div class="row" id="row1">
-            <div class="col-md-6" id="item1">
-                <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-xs-3 col-md-3 text-center">
-                            <img id="img1" src="http://bootsnipp.com/apple-touch-icon-114x114-precomposed.png" alt="bootsnipp"
-                                 class="img-rounded img-responsive" />
-                        </div>
-                        <div class="col-xs-9 col-md-9 section-box">
-                            <h3>
-                                <a id="userTitle1" >Bootsnipp</a>
-                            </h3>
-                            <p id="aboutTitle1"></p>
-                            <hr />
+        <div class="row page">
 
-                            <button type="submit" id="btnDislike1" class="btn-sm btn-danger">Dislike</button>
-
-                        </div>
+            <!-- Start Profile -->
+            <div id="item1" class="span4 profile">
+                <div class="image-wrap">
+                    <div class="hover-wrap">
+                        <span class="overlay-img"></span>
+                        <span class="overlay-text-thumb">CTO/Founder</span>
                     </div>
+                    <img id="img1" alt="John Doe">
+                </div>
+                <h3 class="profile-name">
+                    <a id="userTitle1"></a>
+                </h3>
+                <p class="profile-description" id="aboutTitle1"/>
+
+                <div class="social">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-dribbble"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-facebook"></i></a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-6" id="item2">
-                <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-xs-3 col-md-3 text-center">
-                            <img  id="img2" src="http://bootsnipp.com/apple-touch-icon-114x114-precomposed.png" alt="bootsnipp"
-                                 class="img-rounded img-responsive" />
-                        </div>
-                        <div class="col-xs-9 col-md-9 section-box">
-                            <h3>
-                                <a id="userTitle2"></a>
-                            </h3>
-                            <p id="aboutTitle2"></p>
-                            <hr />
+            <!-- End Profile -->
 
-                            <button type="submit" id="btnDislike2" class="btn-sm btn-danger">Dislike</button>
-
-                        </div>
+            <!-- Start Profile -->
+            <div id="item2" class="span4 profile">
+                <div class="image-wrap">
+                    <div class="hover-wrap">
+                        <span class="overlay-img"></span>
+                        <span class="overlay-text-thumb">Creative Director</span>
                     </div>
+                    <img id="img2" alt="Jane Helf">
+                </div>
+                <h3 class="profile-name">
+                    <a id="userTitle2"></a>
+                </h3>
+                <p class="profile-description" id="aboutTitle2"/>
+
+                <div class="social">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-email"></i></a></li>
+                    </ul>
                 </div>
             </div>
+            <!-- End Profile -->
+
+            <!-- Start Profile -->
+            <div id="item3" class="span4 profile">
+                <div class="image-wrap">
+                    <div class="hover-wrap">
+                        <span class="overlay-img"></span>
+                        <span class="overlay-text-thumb">Lead Designer</span>
+                    </div>
+                    <img id="img3" alt="Joshua Insanus">
+                </div>
+                <h3 class="profile-name">
+                    <a id="userTitle3"></a>
+                </h3>
+                <p class="profile-description" id="aboutTitle3"/>
+                <div class="social">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-linkedin"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-google-plus"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-vimeo"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Profile -->
+
         </div>
 
-        <div class="row" id="row2">
-            <div class="col-md-6" id="item3">
-                <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-xs-3 col-md-3 text-center">
-                            <img id="img3" src="http://bootsnipp.com/apple-touch-icon-114x114-precomposed.png" alt="bootsnipp"
-                                 class="img-rounded img-responsive" />
-                        </div>
-                        <div class="col-xs-9 col-md-9 section-box">
-                            <h3>
-                                <a id="userTitle3"></a>
-                            </h3>
-                            <p id="aboutTitle3"></p>
-                            <hr />
 
-                            <button type="submit" id="btnDislike3" class="btn-sm btn-danger">Dislike</button>
+        <div class="row page">
 
-                        </div>
+            <!-- Start Profile -->
+            <div id="item4" class="span4 profile">
+                <div class="image-wrap">
+                    <div class="hover-wrap">
+                        <span class="overlay-img"></span>
+                        <span class="overlay-text-thumb">CTO/Founder</span>
                     </div>
+                    <img id="img4" alt="John Doe">
+                </div>
+                <h3 class="profile-name">
+                    <a id="userTitle4"></a>
+                </h3>
+                <p class="profile-description" id="aboutTitle4"/>
+
+                <div class="social">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-dribbble"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-facebook"></i></a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-6" id="item4">
-                <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-xs-3 col-md-3 text-center">
-                            <img id="img4" src="http://bootsnipp.com/apple-touch-icon-114x114-precomposed.png" alt="bootsnipp"
-                                 class="img-rounded img-responsive" />
-                        </div>
-                        <div class="col-xs-9 col-md-9 section-box">
-                            <h3>
-                                <a id="userTitle4"></a>
-                            </h3>
-                            <p id="aboutTitle4"></p>
-                            <hr />
+            <!-- End Profile -->
 
-                            <button type="submit" id="btnDislike4" class="btn-sm btn-danger">Dislike</button>
-
-                        </div>
+            <!-- Start Profile -->
+            <div id="item5" class="span4 profile">
+                <div class="image-wrap">
+                    <div class="hover-wrap">
+                        <span class="overlay-img"></span>
+                        <span class="overlay-text-thumb">Creative Director</span>
                     </div>
+                    <img id="img5" alt="Jane Helf">
+                </div>
+                <h3 class="profile-name">
+                    <a id="userTitle5"></a>
+                </h3>
+                <p class="profile-description" id="aboutTitle5"/>
+
+                <div class="social">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-email"></i></a></li>
+                    </ul>
                 </div>
             </div>
+            <!-- End Profile -->
+
+            <!-- Start Profile -->
+            <div id="item6" class="span4 profile">
+                <div class="image-wrap">
+                    <div class="hover-wrap">
+                        <span class="overlay-img"></span>
+                        <span class="overlay-text-thumb">Lead Designer</span>
+                    </div>
+                    <img id="img6" alt="Joshua Insanus">
+                </div>
+                <h3 class="profile-name">
+                    <a id="userTitle6"></a>
+                </h3>
+                <p class="profile-description" id="aboutTitle6"/>
+                <div class="social">
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-linkedin"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-google-plus"></i></a></li>
+                        <li><a href="#"><i class="font-icon-social-vimeo"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Profile -->
+
         </div>
 
-        <div class="row" id="row3">
-            <div class="col-md-6" id="item5">
-                <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-xs-3 col-md-3 text-center">
-                            <img id="img5" src="http://bootsnipp.com/apple-touch-icon-114x114-precomposed.png" alt="bootsnipp"
-                                 class="img-rounded img-responsive" />
-                        </div>
-                        <div class="col-xs-9 col-md-9 section-box">
-                            <h3>
-                                <a id="userTitle5"></a>
-                            </h3>
-                            <p id="aboutTitle5"></p>
-                            <hr />
-
-                            <button type="submit" id="btnDislike5" class="btn-sm btn-danger">Dislike</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" id="item6">
-                <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-xs-3 col-md-3 text-center">
-                            <img id="img6" src="http://bootsnipp.com/apple-touch-icon-114x114-precomposed.png" alt="bootsnipp"
-                                 class="img-rounded img-responsive" />
-                        </div>
-                        <div class="col-xs-9 col-md-9 section-box">
-                            <h3>
-                                <a id="userTitle6"></a>
-                            </h3>
-                            <p id="aboutTitle6"></p>
-                            <hr />
-
-                            <button type="submit" id="btnDislike6" class="btn-sm btn-danger">Dislike</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 
@@ -162,6 +192,9 @@
 <jsp:include page="../fragments/footer.jsp"/>
 <jsp:include page="../templates/footer.jsp"/>
 
+<!-- Default JS -->
+<spring:url value="/resources/js/libs/main_short.js" var="main"/>
+<script type="text/javascript" src="${main}"></script>
 
 <spring:url value="/resources/js/likes_page.js" var="likesPage"/>
 <script type="text/javascript" src="${likesPage}"></script>

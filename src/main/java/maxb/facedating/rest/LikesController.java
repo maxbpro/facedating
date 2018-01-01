@@ -77,32 +77,4 @@ public class LikesController {
 
     }
 
-
-    @RequestMapping(value = { "/{likeId}" }, method = RequestMethod.DELETE)
-    public ResponseEntity deleteLike(@PathVariable("likeId") Long id) {
-        likeInfoService.delete(id);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<LikeInfo> addLike(@RequestParam("otherUserId") Long otherUserId) {
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-
-            UserDetails userDetails = (UserDetails) auth.getPrincipal();
-            User user = userService.findByUsername(userDetails.getUsername());
-
-            LikeInfo likeInfo = new LikeInfo();
-            likeInfo.setCreatedAt(new Date());
-            likeInfo.setUserId(user.getId());
-            likeInfo.setOtherUserId(otherUserId);
-
-            likeInfoService.save(likeInfo);
-            return new ResponseEntity<>(likeInfo, HttpStatus.CREATED);
-        }
-
-        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
-
-    }
 }

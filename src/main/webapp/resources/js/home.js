@@ -2,23 +2,6 @@ var currentPage = 0;
 
 $(document).ready(function(){
 
-    var slider = document.getElementById('slider');
-
-    noUiSlider.create(slider, {
-        start: [ 20, 40 ],
-        connect: true, // Display a colored bar between the handles
-        step: 1,
-        tooltips: true,
-        format: wNumb({
-            decimals: 0
-        }),
-        range: {
-            'min': 10,
-            'max': 99
-        },
-
-    });
-
     getPerson(currentPage);
 
 

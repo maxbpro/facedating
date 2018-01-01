@@ -2,23 +2,27 @@
 $(document).ready(function(){
 
 
-    $('#btnLike').click(function(e){
-        e.preventDefault();
+    // $('#btnLike').click(function(e){
+    //     e.preventDefault();
+    //
+    //     var isLiked = $('#btnLike').attr('liked');
+    //     console.log(isLiked);
+    //
+    //     if(isLiked == true){
+    //         var likedId = $('#btnLike').attr('likedId');
+    //         deleteLike(likedId);
+    //     }else{
+    //         var userId = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+    //         addLike(userId);
+    //     }
+    //
+    // });
 
-        var isLiked = $('#btnLike').attr('liked');
-        console.log(isLiked);
 
-        if(isLiked == true){
-            var likedId = $('#btnLike').attr('likedId');
-            deleteLike(likedId);
-        }else{
-            var userId = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
-            addLike(userId);
-        }
-
-    });
 
 })
+
+
 
 function updateLikedStatus() {
 

@@ -33,18 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user")
-//                .password("password")
-//                .roles("ROLE_ADMIN");
-
-//        auth.jdbcAuthentication().dataSource(dataSource)
-//                .usersByUsernameQuery("select USERNAME, PASSWORD, ENABLED from USER where USERNAME=?")
-//                .authoritiesByUsernameQuery("select USERNAME, ROLE from USER_ROLES where USERNAME=?");
-
         auth.userDetailsService(userDetailsService);
         auth.authenticationProvider(authenticationProvider());
-
     }
 
 
@@ -72,10 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
-                    .logoutUrl("/j_spring_security_logout")
                     .logoutSuccessUrl("/login")
-                //.and().logout().logoutSuccessUrl("/login")
-
                 .and()
                 .rememberMe()
                     .tokenRepository(persistentTokenRepository())

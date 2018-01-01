@@ -2,6 +2,7 @@ package maxb.facedating.controllers;
 
 import maxb.facedating.aws.AwsS3Service;
 import maxb.facedating.dao.UserRepository;
+import maxb.facedating.domain.Feedback;
 import maxb.facedating.domain.User;
 import maxb.facedating.domain.enums.Gender;
 import maxb.facedating.domain.rest.FacePlusResult;
@@ -81,6 +82,8 @@ public class LoginController {
         if(error != null){
             modelAndView.addObject("error", "Your username and password is invalid.");
         }
+
+        modelAndView.addObject("feedbackModel", new Feedback());
 
         return modelAndView;
     }
@@ -211,6 +214,20 @@ public class LoginController {
 
 
         }
+
+
+    }
+
+
+
+    @RequestMapping(value = "/login/feedback", method = RequestMethod.POST)
+    public String feedback(@ModelAttribute("feedbackModel") Feedback feedback, BindingResult result,
+                                  Model model, RedirectAttributes redirectAttributes) {
+
+
+
+
+        return "redirect:/login";
 
 
     }

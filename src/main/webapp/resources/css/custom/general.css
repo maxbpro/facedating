@@ -1,6 +1,11 @@
-body { background: #F6F6F6 !important;}
 
 .initiallyHidden { display: none; }
+
+.chatbody{
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
 
 .chatperson{
     display: block;
@@ -25,6 +30,8 @@ body { background: #F6F6F6 !important;}
     width: 40px;
     height: 40px;
     background-image: url('http://i.imgur.com/JqEuJ6t.png');
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 .chatperson .pname{
     font-size: 18px;

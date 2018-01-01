@@ -1,5 +1,6 @@
 package maxb.facedating.validator;
 
+import maxb.facedating.domain.Feedback;
 import maxb.facedating.domain.User;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -26,7 +27,7 @@ public class UserRegisterFormValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return User.class.equals(clazz);
+        return User.class.equals(clazz) || Feedback.class.equals(clazz);
     }
 
     @Override

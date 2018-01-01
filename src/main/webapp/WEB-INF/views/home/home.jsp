@@ -11,18 +11,27 @@
     <jsp:include page="../templates/header.jsp"/>
     <jsp:include page="../fragments/header.jsp"/>
 
+
     <spring:url value="/resources/css/custom/home.css" var="home"/>
     <link href="${home}" rel="stylesheet" />
 
-    <spring:url value="/resources/css/rangeslider/nouislider.min.css" var="rangeslider"/>
-    <link href="${rangeslider}" rel="stylesheet" />
+    <spring:url value="/resources/css/main.css" var="shutter"/>
+    <link href="${shutter}" rel="stylesheet" />
 
 </head>
 
-<body>
+<body style="background-color: #2f3239">
+
+<!-- This section is for Splash Screen -->
+<div class="ole">
+    <section id="jSplash">
+        <div id="circle"></div>
+    </section>
+</div>
+<!-- End of Splash Screen -->
 
 
-<div class="container">
+<div class="container"  >
 
     <c:if test="${not empty msg}">
         <div class="alert alert-${css} alert-dismissible" role="alert">
@@ -34,84 +43,45 @@
         </div>
     </c:if>
 
-
         <div class="container-fluid zero-pad div-content">
 
-            <div class="col-sm-3 zero-pad">
+            <div class="row">
 
-                <h1>Search</h1>
+                <div  id="sceneView" >
 
-                <hr/>
+                    <div class="box">
+                        <div class="card">
+                            <div class="left"><img class="img-responsive"  id="img" src="https://wallpaperscraft.com/image/henry_cavill_actor_owl_photoshoot_111358_750x1334.jpg" alt=""/></div>
+                            <div class="right">
 
-                <form action="" method="post">
-
-                    <div class="form-group">
-                        <label>Gender</label>
-
-                        <select name="gender" class="form-control input-sm"">
-                            <c:forEach var = "item" items="${genderEnum}">
-                                <option value = "${item.key}">${item.value}</option>
-                            </c:forEach>
-                        </select>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label>Age</label>
-                        <div id="slider"/>
-                    </div>
-
-
-
-                </form>
-
-
-            </div>
-
-            <div class="col-sm-9" id="sceneView" >
-
-
-                <button type="button" class="btn btn-success btn-lg" id="btnNext">Next Person</button>
-
-
-                <div class="box">
-                    <div class="card">
-                        <div class="left"><img class="img-responsive"  id="img" src="https://wallpaperscraft.com/image/henry_cavill_actor_owl_photoshoot_111358_750x1334.jpg" alt=""/></div>
-                        <div class="right">
-
-                            <h1>
-                                <a id="userTitle"></a>
-                            </h1>
-                            <em id="professionTitle"></em>
-                            <p id="descText" class="bio-text"></p>
-                            <button class="btn-bio" id="btnOpen" >Open Profile</button>
+                                <h1>
+                                    <a id="userTitle"></a>
+                                </h1>
+                                <em id="professionTitle"></em>
+                                <p id="descText" class="bio-text"></p>
+                                <button class="btn-bio" id="btnOpen" >Open Profile</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+        </div>
+
+        <div class="offset3">
+            <div id="contact-form">
+                <button type="button" class="submit"  id="btnNext">Next Person</button>
+            </div>
+        </div>
 
 </div>
 
+    <jsp:include page="../fragments/footer.jsp"/>
+    <jsp:include page="../templates/footer.jsp"/>
 
 
-
-
-        <jsp:include page="../fragments/footer.jsp"/>
-        <jsp:include page="../templates/footer.jsp"/>
-
-
-
-        <spring:url value="/resources/js/home.js" var="home"/>
-        <script type="text/javascript" src="${home}"></script>
-
-        <spring:url value="/resources/js/rangeslider/nouislider.min.js" var="rangeslider"/>
-        <script type="text/javascript" src="${rangeslider}"></script>
-
-        <spring:url value="/resources/js/wNumb/wNumb.js" var="wNumb"/>
-        <script type="text/javascript" src="${wNumb}"></script>
-
-
+    <spring:url value="/resources/js/home.js" var="home"/>
+    <script type="text/javascript" src="${home}"></script>
 
 </body>
 
