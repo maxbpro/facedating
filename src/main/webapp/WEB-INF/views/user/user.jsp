@@ -13,7 +13,7 @@
     <jsp:include page="../templates/header.jsp"/>
     <jsp:include page="../fragments/header.jsp"/>
 
-    <spring:url value="/resources/css/custom/general.css" var="general"/>
+    <spring:url value="/resources/css/custom/user.css" var="general"/>
     <link href="${general}" rel="stylesheet" />
 
 </head>
@@ -36,7 +36,7 @@
     <spring:url value="/user/update" var="userUpdateUrl" />
 
 
-    <div class="row page">
+    <div class="row page" style="margin-top: 50px">
 
         <!-- left column -->
         <div class="span4">

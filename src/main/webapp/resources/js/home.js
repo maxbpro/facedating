@@ -39,7 +39,9 @@ function getPerson(pageNumber){
                 window.open("/profile/" + data.userId);
             });
 
-            $("#img").attr("src", data.userPhotoUrl);
+            //$("#img").attr("backgroundImage", data.userPhotoUrl);
+            $('#img').css("background-image", "url("+data.userPhotoUrl+")");
+
 
             //descText
         },

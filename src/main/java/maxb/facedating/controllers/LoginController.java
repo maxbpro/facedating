@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -75,17 +76,23 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView getLoginForm(@RequestParam(value = "error", required = false) String error) throws IOException {
+    public ModelAndView getLoginForm(@RequestParam(value = "error", required = false) String error,
+                                     RedirectAttributes redirectAttributes) throws IOException {
 
-        ModelAndView modelAndView = new ModelAndView("login");
 
         if(error != null){
-            modelAndView.addObject("error", "Your username and password is invalid.");
+            ModelAndView modelAndView = new ModelAndView(new RedirectView("/login#signin", true));
+            redirectAttributes.addFlashAttribute("error", "Your username and password is invalid.");
+            //modelAndView.addObject("feedbackModel", new Feedback());
+            return modelAndView;
         }
 
+        ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("feedbackModel", new Feedback());
 
         return modelAndView;
+
+
     }
 
 
@@ -221,13 +228,13 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login/feedback", method = RequestMethod.POST)
-    public String feedback(@ModelAttribute("feedbackModel") Feedback feedback, BindingResult result,
+    public ModelAndView feedback(@ModelAttribute("feedbackModel") Feedback feedback, BindingResult result,
                                   Model model, RedirectAttributes redirectAttributes) {
 
 
-
-
-        return "redirect:/login";
+        ModelAndView modelAndView = new ModelAndView(new RedirectView("/login#contact", true));
+        redirectAttributes.addFlashAttribute("result", "Feedback has sent");
+        return modelAndView;
 
 
     }

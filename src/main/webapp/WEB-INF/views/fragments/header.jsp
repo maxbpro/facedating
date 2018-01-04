@@ -7,8 +7,13 @@
     <div class="sticky-nav">
         <a id="mobile-nav" class="menu-nav" href="#menu-nav"></a>
 
-        <a href="#" ><img src="/resources/img/logo.png" class="img-responsive"
-                          style="margin-left: 20px; margin-top: 15px" ></a>
+        <div class="navbar-header pull-left">
+
+            <a class="logo navbar-brand" href="#/">
+                <img src="/resources/img/logo.png" class="img-responsive" style="margin-left: 20px; margin-top: 15px" >
+                <a class="navbar-brand" style="margin-top: 15px; margin-left: 10px; color: white" href="#">Soulmate</a>
+            </a>
+        </div>
 
         <nav id="menu">
             <ul id="menu-nav">

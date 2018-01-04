@@ -950,17 +950,17 @@ nav#menu #menu-nav li a:hover {
 	color: #7F8289;
 }
 
-#contact-form {
+.contact-form {
 	margin-bottom: 0;	
 }
 
-#contact-form p {
+.contact-form p {
 	margin-bottom: 1px;	
 }
 
-#contact-form input,
-#contact-form select,
-#contact-form textarea {
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
     border: none;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
@@ -980,14 +980,14 @@ nav#menu #menu-nav li a:hover {
     resize: none;
 }
 
-#contact-form input {
+.contact-form input {
     width: 100%;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
-#contact-form select {
+.contact-form select {
 	width: 100%;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -995,7 +995,7 @@ nav#menu #menu-nav li a:hover {
 }
 
 
-#contact-form textarea {
+.contact-form textarea {
     width: 100%;
 	resize: vertical;
 	-webkit-box-sizing: border-box;
@@ -1007,7 +1007,7 @@ nav#menu #menu-nav li a:hover {
 	background: #7f8289;
 }
 
-#contact-form .submit {
+.contact-form .submit {
     background: #3C3F45;
     color: #23262C;
     cursor: pointer;
@@ -1027,7 +1027,7 @@ nav#menu #menu-nav li a:hover {
 		    transition: background 0.1s linear 0s, color 0.1s linear 0s;
 }
 
-#contact-form .submit:hover {
+.contact-form .submit:hover {
     background: #DE5E60;
     color: #FFFFFF;
 }

@@ -10,6 +10,10 @@
 <head>
     <jsp:include page="./templates/header.jsp"/>
     <jsp:include page="./fragments/header_sign_up.jsp"/>
+
+    <spring:url value="/resources/css/main.css" var="shutter"/>
+    <link href="${shutter}" rel="stylesheet" />
+
 </head>
 
 <body style="background-color: #2f3239">
@@ -34,7 +38,8 @@
             <div class="span4 signup-form">
 
                 <div class="text-center profile">
-                    <img src="/resources/images/no_photo.jpg" id="img" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <img src="/resources/images/no_photo.jpg" id="img" height="200px" width="200px"
+                         class="avatar img-circle img-thumbnail" alt="avatar">
                     <p >Upload a1 photo...</p>
 
                     <form:input type="file" path="inputFile" id="inputFile"/>

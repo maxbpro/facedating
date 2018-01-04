@@ -27,11 +27,11 @@
 <body>
 
 <!-- This section is for Splash Screen -->
-<div class="ole">
-    <section id="jSplash">
-        <div id="circle"></div>
-    </section>
-</div>
+<%--<div class="ole">--%>
+    <%--<section id="jSplash">--%>
+        <%--<div id="circle"></div>--%>
+    <%--</section>--%>
+<%--</div>--%>
 <!-- End of Splash Screen -->
 
 <!-- Homepage Slider -->
@@ -142,7 +142,7 @@
             <c:url value="/register" var="registerUrl"/>
 
             <div>
-                <c:if test="${param.error ne null}">
+                <c:if test="${error ne null}">
                        <div class="alert alert-danger col-sm-12">Invalid username and password.</div>
                 </c:if>
 
@@ -151,12 +151,12 @@
                   </c:if> 
             </div>
 
-            <form:form action="${actionUrl}" id="contact-form" method="post" role="form" class="contact-form">
+            <form:form action="${actionUrl}" method="post" role="form" class="contact-form">
                 <p class="contact-name">
                     <input id="username" type="text" placeholder="Username" value="" name="username" />
                 </p>
                 <p class="contact-email">
-                    <input id="password" type="password" placeholder="Password" value="" name="password" />
+                    <input id="password" type="password" placeholder="Password" name="password" />
                 </p>
 
                 <%--<div class="checkbox signin-form">--%>
@@ -206,7 +206,14 @@
         <div class="row">
             <div class="span9">
 
-                <form:form action="/login/feedback" modelAttribute="feedbackModel" id="contact-form" class="contact-form">
+                <div>
+                    <c:if test="${result ne null}">
+                           <div class="alert alert-success col-sm-12">Feedback has sent.</div>
+                    </c:if>
+
+                </div>
+
+                <form:form action="/login/feedback" modelAttribute="feedbackModel" class="contact-form">
                     <p class="contact-name">
                         <form:input path="name" id="contact_name" type="text" placeholder="Full Name" value="" name="name" />
                     </p>
@@ -254,12 +261,9 @@
 <script type="text/javascript" src="${supersized}"></script>
 
 <%--<!-- Default JS -->--%>
-<%--<spring:url value="/resources/js/libs/main.js" var="main"/>--%>
-<%--<script type="text/javascript" src="${main}"></script>--%>
-
-<!-- Default JS -->
-<spring:url value="/resources/js/libs/main_short.js" var="main"/>
+<spring:url value="/resources/js/libs/main.js" var="main"/>
 <script type="text/javascript" src="${main}"></script>
+
 
 </body>
 

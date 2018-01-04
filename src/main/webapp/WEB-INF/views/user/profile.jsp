@@ -30,13 +30,13 @@
 
 <div class="container">
 
-    <div class="row">
+    <div class="row" style="color: white">
 
         <div class="span3">
-            <div class="profile" style="background-color: rgba(158,162,170,0.98); padding: 20px">
+            <div class="profile" style="background-color: #26292E; padding: 20px; margin-top: 50px">
                 <!-- SIDEBAR USERPIC -->
-                <div class="profile-userpic">
-                    <img src="${photoUrl}" class="img-responsive" alt="">
+                <div class="profile-userpic text-center">
+                    <img src="${photoUrl}" class="img-responsive" height="100px" width="100px" alt="">
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
@@ -97,15 +97,13 @@
         </div>
 
         <div class="span9 silver" style="margin-top: 20px" >
-            <div class="profile-content" style="background-color: rgba(158,162,170,0.98)">
+            <div class="profile-content">
 
                 <div class="col-md-8 col-xs-12 col-sm-6 col-lg-8"  >
                     <div class="container" >
                         <h2>${name}</h2>
                         <p>an    <b> ${profession}</b></p>
                     </div>
-                    <hr>
-
 
                     <div class=" col-md-9 col-lg-9 ">
                         <table class="table table-user-information">

@@ -14,7 +14,7 @@
     <jsp:include page="../fragments/header.jsp"/>
 
 
-    <spring:url value="/resources/css/general.css" var="general"/>
+    <spring:url value="/resources/css/custom/general.css" var="general"/>
     <link href="${general}" rel="stylesheet" />
 
 </head>

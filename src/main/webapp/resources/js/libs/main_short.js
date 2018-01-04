@@ -134,17 +134,6 @@ BRUSHED.fancyBox = function(){
 }
 
 
-/* ==================================================
-   Contact Form
-================================================== */
-
-
-
-
-/* ==================================================
-   Twitter Feed
-================================================== */
-
 
 
 /* ==================================================
@@ -301,22 +290,22 @@ BRUSHED.toolTip = function(){
 ================================================== */
 
 $(document).ready(function(){
-	Modernizr.load([
-	{
-		test: Modernizr.placeholder,
-		nope: '/resources/js/libs/placeholder.js',
-		complete : function() {
-				if (!Modernizr.placeholder) {
-						Placeholders.init({
-						live: true,
-						hideOnFocus: false,
-						className: "yourClass",
-						textColor: "#999"
-						});    
-				}
-		}
-	}
-	]);
+	// Modernizr.load([
+	// {
+	// 	test: Modernizr.placeholder,
+	// 	nope: '/resources/js/libs/placeholder.js',
+	// 	complete : function() {
+	// 			if (!Modernizr.placeholder) {
+	// 					Placeholders.init({
+	// 					live: true,
+	// 					hideOnFocus: false,
+	// 					className: "yourClass",
+	// 					textColor: "#999"
+	// 					});
+	// 			}
+	// 	}
+	// }
+	// ]);
 	
 	// Preload the page with jPreLoader
 	$('body').jpreLoader({
@@ -332,13 +321,11 @@ $(document).ready(function(){
 	BRUSHED.nav();
 	BRUSHED.mobileNav();
 	BRUSHED.listenerMenu();
-	BRUSHED.menu();
+	//BRUSHED.menu();
 	BRUSHED.goSection();
 	BRUSHED.goUp();
 	BRUSHED.filter();
 	BRUSHED.fancyBox();
-	//BRUSHED.contactForm();
-	//BRUSHED.tweetFeed();
 	BRUSHED.scrollToTop();
 	BRUSHED.utils();
 	BRUSHED.accordion();

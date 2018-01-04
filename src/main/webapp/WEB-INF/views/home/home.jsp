@@ -15,26 +15,24 @@
     <spring:url value="/resources/css/custom/home.css" var="home"/>
     <link href="${home}" rel="stylesheet" />
 
-    <spring:url value="/resources/css/main.css" var="shutter"/>
-    <link href="${shutter}" rel="stylesheet" />
 
 </head>
 
 <body style="background-color: #2f3239">
 
-<!-- This section is for Splash Screen -->
-<div class="ole">
-    <section id="jSplash">
-        <div id="circle"></div>
-    </section>
-</div>
-<!-- End of Splash Screen -->
+<%--<!-- This section is for Splash Screen -->--%>
+<%--<div class="ole">--%>
+    <%--<section id="jSplash">--%>
+        <%--<div id="circle"></div>--%>
+    <%--</section>--%>
+<%--</div>--%>
+<%--<!-- End of Splash Screen -->--%>
 
 
 <div class="container"  >
 
     <c:if test="${not empty msg}">
-        <div class="alert alert-${css} alert-dismissible" role="alert">
+        <div class="alert alert-${css} alert-dismissible" style="margin-top: 30px" role="alert">
             <button type="button" class="close" data-dismiss="alert"
                     aria-label="Close">
                 <span aria-hidden="true">×</span>
@@ -51,11 +49,13 @@
 
                     <div class="box">
                         <div class="card">
-                            <div class="left"><img class="img-responsive"  id="img" src="https://wallpaperscraft.com/image/henry_cavill_actor_owl_photoshoot_111358_750x1334.jpg" alt=""/></div>
-                            <div class="right">
+                            <div class="left">
+                                <img class="img-responsive"  id="img" alt=""/>
+                            </div>
 
-                                <h1>
-                                    <a id="userTitle"></a>
+                            <div class="right">
+                                <h1 id="userTitle" style="color: #DE5E60">
+
                                 </h1>
                                 <em id="professionTitle"></em>
                                 <p id="descText" class="bio-text"></p>

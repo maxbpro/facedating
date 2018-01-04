@@ -12,6 +12,10 @@
 <head>
     <jsp:include page="../templates/header.jsp"/>
     <jsp:include page="../fragments/header.jsp"/>
+
+    <spring:url value="/resources/css/custom/likes.css" var="likes"/>
+    <link href="${likes}" rel="stylesheet" />
+
 </head>
 
 <body style="background-color: #2f3239">
@@ -26,7 +30,7 @@
 
 <div class="container">
 
-    <div class="container bg" id="sceneView">
+    <div class="container bg" id="sceneView" style="margin-top: 50px">
 
         <div class="row page">
 
