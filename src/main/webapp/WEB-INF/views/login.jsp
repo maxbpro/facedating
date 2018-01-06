@@ -76,7 +76,7 @@
                         <span class="overlay-img"></span>
                         <span class="overlay-text-thumb">Front-end Developer</span>
                     </div>
-                    <img src="/resources/img/profile/profile-00.jpg" alt="John Doe">
+                    <img src="${pageContext.request.contextPath}/resources/img/profile/profile-00.jpg" alt="John Doe">
                 </div>
                 <h3 class="profile-name">Max Buyanov</h3>
                 <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>.
@@ -99,7 +99,7 @@
                         <span class="overlay-img"></span>
                         <span class="overlay-text-thumb">Back-end Developer</span>
                     </div>
-                    <img src="/resources/img/profile/profile-01.jpg" alt="Jane Helf">
+                    <img src="${pageContext.request.contextPath}/resources/img/profile/profile-01.jpg" alt="Jane Helf">
                 </div>
                 <h3 class="profile-name">Max Buyanov</h3>
                 <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>.

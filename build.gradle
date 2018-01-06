@@ -21,6 +21,10 @@ buildscript {
 
 apply plugin: "org.flywaydb.flyway"
 
+war {
+    archiveName 'ROOT.war'
+}
+
 repositories {
     mavenCentral()
 }
