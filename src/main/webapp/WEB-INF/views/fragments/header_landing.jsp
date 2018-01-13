@@ -24,7 +24,7 @@
         <nav id="menu">
             <ul id="menu-nav">
                 <li class="current"><a href="#home-slider">Info</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="#about">About Me</a></li>
                 <li><a href="#signin">Sign In</a></li>
                 <li><a href="${pageContext.request.contextPath}/register">Sign Up</a></li>
                 <li><a href="#contact">Contact</a></li>

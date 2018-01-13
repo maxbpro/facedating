@@ -59,8 +59,8 @@
         <div class="row">
             <div class="span12">
                 <div class="title-page">
-                    <h2 class="title">About Us</h2>
-                    <h3 class="title-description">Learn About our Team &amp; Culture.</h3>
+                    <h2 class="title">About Me</h2>
+                    <h3 class="title-description">Information about a developer</h3>
                 </div>
             </div>
         </div>
@@ -76,17 +76,19 @@
                         <span class="overlay-img"></span>
                         <span class="overlay-text-thumb">Front-end Developer</span>
                     </div>
-                    <img src="${pageContext.request.contextPath}/resources/img/profile/profile-00.jpg" alt="John Doe">
+                    <img src="${pageContext.request.contextPath}/resources/img/profile/profile-00.jpg">
                 </div>
                 <h3 class="profile-name">Max Buyanov</h3>
-                <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>.
-                    Praesent porta, purus eget sagittis imperdiet, nulla mi ullamcorper metus, id hendrerit metus diam vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                <p class="profile-description"> Frontend skills:</p>
+                <p class="profile-description"> F    - MVC Frameworks: Angular.js 1.x</p>
+                <p class="profile-description"> F   - Javascript, jquery, ajax</p>
+                <p class="profile-description"> F   - HTML5 and css3</p>
+                <p class="profile-description"> F    - Adaptive layouts/framework - Bootstrap</p>
 
                 <div class="social">
                     <ul class="social-icons">
-                        <li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
-                        <li><a href="#"><i class="font-icon-social-dribbble"></i></a></li>
-                        <li><a href="#"><i class="font-icon-social-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/MaxBpro"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="https://www.facebook.com/maxb.pro"><i class="font-icon-social-facebook"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -97,23 +99,52 @@
                 <div class="image-wrap">
                     <div class="hover-wrap">
                         <span class="overlay-img"></span>
-                        <span class="overlay-text-thumb">Back-end Developer</span>
+                        <span class="overlay-text-thumb">Spring Developer</span>
                     </div>
-                    <img src="${pageContext.request.contextPath}/resources/img/profile/profile-01.jpg" alt="Jane Helf">
+                    <img src="${pageContext.request.contextPath}/resources/img/profile/profile-01.jpg">
                 </div>
                 <h3 class="profile-name">Max Buyanov</h3>
-                <p class="profile-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac augue at erat <a href="#">hendrerit dictum</a>.
-                    Praesent porta, purus eget sagittis imperdiet, nulla mi ullamcorper metus, id hendrerit metus diam vitae est. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                <p class="profile-description">Knowledge related to Spring development: </p>
+                <p class="profile-description">- Servlets, JSP </p>
+                <p class="profile-description">- Build tools (Maven and Gradle) </p>
+                <p class="profile-description">- Unit Testing Tools (JUnit, TestNG, Mockito) </p>
+                <p class="profile-description"> - Spring Boot </p>
+                <p class="profile-description"> - Hibernate, Spring Data </p>
+
 
                 <div class="social">
                     <ul class="social-icons">
-                        <li><a href="#"><i class="font-icon-social-twitter"></i></a></li>
-                        <li><a href="#"><i class="font-icon-social-email"></i></a></li>
+                        <li><a href="https://twitter.com/MaxBpro"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="https://www.facebook.com/maxb.pro"><i class="font-icon-social-facebook"></i></a></li>
                     </ul>
                 </div>
             </div>
             <!-- End Profile -->
 
+            <!-- Start Profile -->
+            <div class="span4 profile">
+                <div class="image-wrap">
+                    <div class="hover-wrap">
+                        <span class="overlay-img"></span>
+                        <span class="overlay-text-thumb">Mobile Developer</span>
+                    </div>
+                    <img src="${pageContext.request.contextPath}/resources/img/profile/profile-00.jpg" >
+                </div>
+                <h3 class="profile-name">Max Buyanov</h3>
+                   <p class="profile-description">Tasks successfully coped:</p>
+                    <p class="profile-description">- Network interaction</p>
+                    <p class="profile-description">- Video/audio/photo editing</p>
+                    <p class="profile-description">- Face detection and face recognition</p>
+                    <p class="profile-description">- Navigation systems and trackers</p>
+
+                <div class="social">
+                    <ul class="social-icons">
+                        <li><a href="https://twitter.com/MaxBpro"><i class="font-icon-social-twitter"></i></a></li>
+                        <li><a href="https://www.facebook.com/maxb.pro"><i class="font-icon-social-facebook"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Profile -->
 
         </div>
         <!-- End People -->
@@ -131,6 +162,7 @@
             <div class="span12">
                 <div class="title-page">
                     <h2 class="title">Sign in</h2>
+                    <h3 class="title-description">Member login</h3>
                 </div>
             </div>
         </div>
@@ -196,7 +228,7 @@
             <div class="span12">
                 <div class="title-page">
                     <h2 class="title">Get in Touch</h2>
-                    <h3 class="title-description">We’re currently accepting new client projects. We look forward to serving you.</h3>
+                    <h3 class="title-description">I'm currently accepting new client projects. I look forward to serving you.</h3>
                 </div>
             </div>
         </div>

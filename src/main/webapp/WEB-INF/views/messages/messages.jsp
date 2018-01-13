@@ -17,6 +17,9 @@
     <spring:url value="/resources/css/custom/general.css" var="general"/>
     <link href="${general}" rel="stylesheet" />
 
+    <spring:url value="/resources/css/main.css" var="shutter"/>
+    <link href="${shutter}" rel="stylesheet" />
+
 </head>
 
 <body style="background-color: #2f3239">
@@ -51,14 +54,14 @@
                        class="chatperson">
 
                         <span class="chatimg">
-                            <img src="${item.photoUrl}" style="padding-bottom: 20px" class="img-responsive" alt="f" />
+                            <img src="${item.photoUrl}" style="padding-bottom: 20px" />
                         </span>
                     </a>
 
                 </c:forEach>
 
             </div>
-            <div class="span11">
+            <div style="position: relative" class="span11">
                 <div class="chatbody" style="color: #FFFFFF;font-size: 20px;">
 
                     <table class="table">
@@ -88,19 +91,25 @@
 
                 </div>
 
+                <div style="margin-top: 150px">
 
-                <form:form modelAttribute="postForm" action="/messages/${chatId}" id="contact-form" class="contact-form">
+                    <form:form modelAttribute="postForm" action="/messages/${chatId}" id="contact-form" class="contact-form">
 
-                    <div class="row">
-                        <div class="span5">
-                            <form:input path="message" id="contact_name" style="margin-top: 30px" type="text" placeholder="Enter some text..." />
+                        <div class="row">
+                            <div class="span5">
+                                <form:input path="message" id="contact_name" style="margin-top: 30px" type="text" placeholder="Enter some text..." />
+                            </div>
+                            <div class="span2">
+                                <button class="submit">Send</button>
+                            </div>
                         </div>
-                        <div class="span2">
-                            <button class="submit">Send</button>
-                        </div>
-                    </div>
 
-                </form:form>
+                    </form:form>
+
+                </div>
+
+
+
 
             </div>
         </div>

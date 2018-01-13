@@ -15,6 +15,9 @@
     <spring:url value="/resources/css/custom/home.css" var="home"/>
     <link href="${home}" rel="stylesheet" />
 
+    <spring:url value="/resources/css/main.css" var="shutter"/>
+    <link href="${shutter}" rel="stylesheet" />
+
 
 </head>
 
@@ -68,10 +71,12 @@
             </div>
         </div>
 
-        <div class="offset3">
-            <div id="contact-form">
+        <div class="container">
+            <div class="contact-form text-center" id="contact-form" >
                 <button type="button" class="submit"  id="btnNext">Next Person</button>
             </div>
+
+
         </div>
 
 </div>

@@ -90,11 +90,11 @@ a:hover {
     text-decoration: none;
 }
 
-button {
-    position: relative;
-    top: 10px;
-    left: 80px;
-}
+/*button {*/
+    /*position: relative;*/
+    /*top: 10px;*/
+    /*left: 80px;*/
+/*}*/
 
 .btn-bio {
     background: transparent;
@@ -228,7 +228,7 @@ hr {
     text-decoration:line-through;
 }
 
-input, button, select, textarea {
+input, select, textarea {
     font-weight: 300;
     font-family: 'Titillium Web', sans-serif;
     outline: 0;
