@@ -8,6 +8,7 @@ import maxb.facedating.domain.rest.FacePlusResult;
 import maxb.facedating.service.MessagesService;
 import maxb.facedating.service.UserService;
 import maxb.facedating.validator.NewMessageFormValidator;
+import org.modelmapper.internal.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -84,9 +86,12 @@ public class MessagesController {
                 Chat chat = chats.get(0);
 
                 Page<Message> messagesPage = messagesService.findMessages(chat.getId(),
-                        new PageRequest(pageNumber, 10, new Sort(Sort.Direction.DESC, "createdAt")));
+                        new PageRequest(pageNumber, 15, new Sort(Sort.Direction.DESC, "createdAt")));
 
-                List<Message> messages = messagesPage.getContent();
+                List<Message> messagesOriginal = messagesPage.getContent();
+
+                List<Message> messages = new ArrayList(messagesOriginal);
+                Collections.reverse(messages);
                 model.addAttribute("messages", messages);
 
                 User otherUser = userService.findByUserId(chat.getSenderId());

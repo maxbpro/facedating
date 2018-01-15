@@ -44,6 +44,12 @@
         </div>
     </c:if>
 
+    <div id="emptyView" class="offset4 span4" >
+        <p class="profile-description">You will see users on this page in the future</p>
+    </div>
+
+    <div id="mainView">
+
         <div class="container-fluid zero-pad div-content">
 
             <div class="row">
@@ -78,6 +84,10 @@
 
 
         </div>
+
+    </div>
+
+
 
 </div>
 

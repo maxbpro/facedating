@@ -131,7 +131,7 @@
                     <img src="${pageContext.request.contextPath}/resources/img/profile/profile-00.jpg" >
                 </div>
                 <h3 class="profile-name">Max Buyanov</h3>
-                   <p class="profile-description">Tasks successfully coped:</p>
+                    <p class="profile-description">Tasks successfully coped:</p>
                     <p class="profile-description">- Network interaction</p>
                     <p class="profile-description">- Video/audio/photo editing</p>
                     <p class="profile-description">- Face detection and face recognition</p>
@@ -168,7 +168,7 @@
         </div>
         <!-- End Title Page -->
 
-        <div class="span12">
+        <div class="span10 offset1">
 
             <c:url value="/login" var="actionUrl"/>
             <c:url value="/register" var="registerUrl"/>

@@ -86,6 +86,7 @@ function getLikes(pageNumber){
             //             .text(item.firstName)
             // );
 
+            var empty = true;
 
             if(data.length > 0){
 
@@ -100,6 +101,9 @@ function getLikes(pageNumber){
                 $("#img1").attr("src", data[0].userPhotoUrl);
 
                 $('#item1').removeClass("hidden");
+
+                empty = false;
+
             }else{
                 $('#item1').addClass("hidden");
             }
@@ -116,6 +120,9 @@ function getLikes(pageNumber){
 
                 $("#img2").attr("src", data[1].userPhotoUrl);
                 $('#item2').removeClass("hidden");
+
+                empty = false;
+
             }else{
                 $('#item2').addClass("hidden");
             }
@@ -133,6 +140,9 @@ function getLikes(pageNumber){
 
                 $("#img3").attr("src", data[2].userPhotoUrl);
                 $('#item3').removeClass("hidden");
+
+                empty = false;
+
             }else{
                 $('#item3').addClass("hidden");
             }
@@ -149,6 +159,9 @@ function getLikes(pageNumber){
 
                 $("#img4").attr("src", data[3].userPhotoUrl);
                 $('#item4').removeClass("hidden");
+
+                empty = false;
+
             }else{
                 $('#item4').addClass("hidden");
             }
@@ -166,6 +179,9 @@ function getLikes(pageNumber){
 
                 $("#img5").attr("src", data[4].userPhotoUrl);
                 $('#item5').removeClass("hidden");
+
+                empty = false;
+
             }else{
                 $('#item5').addClass("hidden");
             }
@@ -183,10 +199,18 @@ function getLikes(pageNumber){
 
                 $("#img6").attr("src", data[5].userPhotoUrl);
                 $('#item6').removeClass("hidden");
+
+                empty = false;
+
             }else{
                 $('#item6').addClass("hidden");
             }
 
+            if(empty){
+                $('#emptyView').removeClass("hidden");
+            }else{
+                $('#emptyView').addClass("hidden");
+            }
 
         },
         error: function (e) {

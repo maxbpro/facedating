@@ -60,6 +60,10 @@ public class ComparesController {
                         compareInfo.getFacesetToken(),
                         compareInfo.getFaceToken());
 
+                if(otherUser == null){
+                    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                }
+
                 CompareDTO compareDTO = new CompareDTO();
                 compareDTO.setId(compareInfo.getId());
                 compareDTO.setUserId(otherUser.getId());
@@ -74,7 +78,7 @@ public class ComparesController {
                 return new ResponseEntity<>(compareDTO, HttpStatus.OK);
 
             }else{
-                return new ResponseEntity(HttpStatus.NO_CONTENT);
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
             }
 
 

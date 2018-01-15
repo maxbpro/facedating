@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -46,72 +47,91 @@
 
     <div class="container">
         <div class="row page">
-            <div class="span1">
 
-                <c:forEach var="item" items="${users}" varStatus="status">
+            <c:choose>
 
-                    <a href="${pageContext.request.contextPath}/messages/${chats[status.index].id}"
-                       class="chatperson">
+                <c:when test = "${fn:length(users) gt 0}">
+
+                    <div class="span1">
+
+                        <c:forEach var="item" items="${users}" varStatus="status">
+
+                            <a href="${pageContext.request.contextPath}/messages/${chats[status.index].id}"
+                               class="chatperson">
 
                         <span class="chatimg">
                             <img src="${item.photoUrl}" style="padding-bottom: 20px" />
                         </span>
-                    </a>
-
-                </c:forEach>
-
-            </div>
-            <div style="position: relative" class="span11">
-                <div class="chatbody" style="color: #FFFFFF;font-size: 20px;">
-
-                    <table class="table">
-
-                        <c:forEach var="item" items="${messages}">
-
-                            <tr>
-
-                                <c:choose>
-                                    <c:when test="${item.answer eq true}">
-                                        <td><img src="${otherPhoto}" class="img-responsive" style="width: 30px; height: 30px"/></td>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <td><img src="${myPhoto}" class="img-responsive" style="width: 30px; height: 30px" /></td>
-                                    </c:otherwise>
-                                </c:choose>
-
-                                <td>${item.message}</td>
-                                <td>
-                                    <fmt:formatDate value="${item.createdAt}" pattern="hh:mm" />
-                                </td>
-                            </tr>
+                            </a>
 
                         </c:forEach>
 
-                    </table>
+                    </div>
+                    <div style="position: relative" class="span11">
+                        <div class="chatbody" style="color: #FFFFFF;font-size: 20px;">
 
-                </div>
+                            <table class="table">
 
-                <div style="margin-top: 150px">
+                                <c:forEach var="item" items="${messages}">
 
-                    <form:form modelAttribute="postForm" action="/messages/${chatId}" id="contact-form" class="contact-form">
+                                    <tr>
 
-                        <div class="row">
-                            <div class="span5">
-                                <form:input path="message" id="contact_name" style="margin-top: 30px" type="text" placeholder="Enter some text..." />
-                            </div>
-                            <div class="span2">
-                                <button class="submit">Send</button>
-                            </div>
+                                        <c:choose>
+                                            <c:when test="${item.answer eq true}">
+                                                <td><img src="${otherPhoto}" class="img-responsive" style="width: 30px; height: 30px"/></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td><img src="${myPhoto}" class="img-responsive" style="width: 30px; height: 30px" /></td>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                        <td>${item.message}</td>
+                                        <td>
+                                            <fmt:formatDate value="${item.createdAt}" pattern="hh:mm" />
+                                        </td>
+                                    </tr>
+
+                                </c:forEach>
+
+                            </table>
+
                         </div>
 
-                    </form:form>
+                        <div style="margin-top: 150px">
 
-                </div>
+                            <form:form modelAttribute="postForm" action="/messages/${chatId}" id="contact-form" class="contact-form">
+
+                                <div class="row">
+                                    <div class="span5">
+                                        <form:input path="message" id="contact_name" style="margin-top: 30px" type="text" placeholder="Enter some text..." />
+                                    </div>
+                                    <div class="span2">
+                                        <button class="submit">Send</button>
+                                    </div>
+                                </div>
+
+                            </form:form>
+
+                        </div>
 
 
 
 
-            </div>
+                    </div>
+
+                </c:when>
+
+                <c:otherwise>
+
+                    <div class="offset4 span4" >
+                        <p class="profile-description">You will see messages on this page in the future</p>
+                    </div>
+
+                </c:otherwise>
+            </c:choose>
+
+
+
         </div>
     </div>
 

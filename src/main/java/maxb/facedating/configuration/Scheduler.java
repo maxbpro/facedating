@@ -42,11 +42,13 @@ public class Scheduler {
 
     @Scheduled(fixedDelay = 900000) // 15 min
     public void executeEveryOneMin() {
-        System.out.println(" 2 Run Job " + new Date());
-        startChecking();
+        System.out.println("Run Job " + new Date());
+        //startChecking();
     }
 
     public void startChecking(){
+
+        System.out.println("Job started" + new Date());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
@@ -80,5 +82,7 @@ public class Scheduler {
         List<CompareInfo> compareInfos = compareInfoService.listCompares();
         CompareInfo compareInfo = compareInfos.get(0);
 
+        System.out.println("Job finished" + new Date());
+        System.out.println("compareInfos: " + compareInfos);
     }
 }

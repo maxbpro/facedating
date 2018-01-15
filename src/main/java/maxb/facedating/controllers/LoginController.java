@@ -1,8 +1,10 @@
 package maxb.facedating.controllers;
 
 import maxb.facedating.aws.AwsS3Service;
+import maxb.facedating.configuration.Scheduler;
 import maxb.facedating.dao.UserRepository;
 import maxb.facedating.domain.Feedback;
+import maxb.facedating.domain.Role;
 import maxb.facedating.domain.User;
 import maxb.facedating.domain.enums.Gender;
 import maxb.facedating.domain.rest.FacePlusResult;
@@ -15,9 +17,16 @@ import maxb.facedating.validator.UserUpdateFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.ldap.LdapUserServiceBeanDefinitionParser;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,10 +43,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -64,12 +70,22 @@ public class LoginController {
     @Autowired
     UserRegisterFormValidator userFormValidator;
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    private Scheduler scheduler;
+
+
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.setDisallowedFields(new String[]{"inputFile"});
         binder.setValidator(userFormValidator);
 
-        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
         dateFormatter.setLenient(false);
         binder.registerCustomEditor(Date.class, "birthdate", new CustomDateEditor(dateFormatter, true));
     }
@@ -112,14 +128,12 @@ public class LoginController {
     public ModelAndView accessDenied(){
 
         ModelAndView modelAndView = new ModelAndView("errors/access_denied");
-
         return modelAndView;
     }
 
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
-
 
         if (!model.containsAttribute("userForm")) {
             model.addAttribute("userForm", new User());
@@ -209,6 +223,24 @@ public class LoginController {
                 }
 
 
+                try {
+
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                            new UsernamePasswordAuthenticationToken(userDetails, user.getPassword(), userDetails.getAuthorities());
+
+                    authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+                    if (usernamePasswordAuthenticationToken.isAuthenticated()) {
+                        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                    }
+
+                    //start analizescheduler
+                    scheduler.startChecking();
+
+                } catch (Exception e) {
+                    SecurityContextHolder.getContext().setAuthentication(null);
+                }
 
                 return "redirect:/user";
 

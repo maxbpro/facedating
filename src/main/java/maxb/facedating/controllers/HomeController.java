@@ -45,9 +45,6 @@ public class HomeController {
     @Autowired
     private CompareInfoService compareInfoService;
 
-    @Autowired
-    private Scheduler scheduler;
-
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView home(Model model) throws IOException {
 

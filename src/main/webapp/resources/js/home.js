@@ -12,6 +12,8 @@ $(document).ready(function(){
         getPerson(currentPage);
     })
 
+    $('#emptyView').addClass("hidden");
+
 })
 
 function getPerson(pageNumber){
@@ -43,10 +45,14 @@ function getPerson(pageNumber){
             $('#img').css("background-image", "url("+data.userPhotoUrl+")");
 
 
-            //descText
+            $('#emptyView').addClass("hidden");
+            $('#mainView').removeClass("hidden");
+            console.log("success");
         },
         error: function (e) {
-            alert("Error Loading cities");
+            $('#emptyView').removeClass("hidden");
+            $('#mainView').addClass("hidden");
+            console.log("faled");
         }
 
     });

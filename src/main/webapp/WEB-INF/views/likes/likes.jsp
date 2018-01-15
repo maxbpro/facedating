@@ -32,6 +32,11 @@
 
     <div class="container bg" id="sceneView" style="margin-top: 50px">
 
+
+        <div id="emptyView" class="offset4 span4" >
+            <p class="profile-description">You will see likes on this page in the future</p>
+        </div>
+
         <div class="row page">
 
             <!-- Start Profile -->

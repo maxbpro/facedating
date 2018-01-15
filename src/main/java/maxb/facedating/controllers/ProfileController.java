@@ -80,11 +80,19 @@ public class ProfileController {
             modelAndView.addObject("job", otherUser.getJob() );
 
 
-            City city = restCountriesService.getCityById(otherUser.getCityId());
-            Country country = restCountriesService.getCountryById(otherUser.getCountryId());
+            if(otherUser.getCityId() != 0){
+                City city = restCountriesService.getCityById(otherUser.getCityId());
+                modelAndView.addObject("city", city.getTitle());
+            }else{
+                modelAndView.addObject("city", "unknown");
+            }
 
-            modelAndView.addObject("country", country.getTitle());
-            modelAndView.addObject("city", city.getTitle());
+            if(otherUser.getCountryId() != 0){
+                Country country = restCountriesService.getCountryById(otherUser.getCountryId());
+                modelAndView.addObject("country", country.getTitle());
+            }else{
+                modelAndView.addObject("country", "unknown");
+            }
 
             modelAndView.addObject("searchActive", true);
         }
